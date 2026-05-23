@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ecosystem and the Return Thesis — Pausality / SRL</title>
+<meta name="description" content="An investor depth-brief for friends, family, and plausible angels. The market, the audience, the ecosystem, and the honest answer to how you get your money back.">
+<meta name="robots" content="noindex">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --ink: #0F1115;
+    --paper: #FAFAF7;
+    --accent: #185FA5;
+    --accent-soft: #E6F1FB;
+    --teal: #1D9E75;
+    --teal-soft: #E1F5EE;
+    --mute: #5F5E5A;
+    --line: rgba(15, 17, 21, 0.12);
+  }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  .serif { font-family: "Iowan Old Style", "Georgia", "Times New Roman", serif; }
+  .accent { color: var(--accent); }
+  .teal { color: var(--teal); }
+  .bg-accent-soft { background: var(--accent-soft); }
+  .bg-teal-soft { background: var(--teal-soft); }
+  .mute { color: var(--mute); }
+  .line { border-color: var(--line); }
+  .prose-srl h2 { font-family: "Iowan Old Style", "Georgia", serif; font-size: 28px; line-height: 1.2; font-weight: 400; margin-top: 56px; margin-bottom: 20px; }
+  .prose-srl h3 { font-size: 18px; font-weight: 500; margin-top: 32px; margin-bottom: 12px; }
+  .prose-srl p { font-size: 16px; margin-bottom: 18px; max-width: 68ch; }
+  .prose-srl ul { margin-bottom: 18px; padding-left: 0; list-style: none; }
+  .prose-srl ul li { font-size: 16px; padding-left: 22px; position: relative; margin-bottom: 10px; max-width: 68ch; }
+  .prose-srl ul li::before { content: "—"; position: absolute; left: 0; color: var(--mute); }
+  .prose-srl strong { font-weight: 600; }
+  .prose-srl em { color: var(--mute); }
+  .pull { border-left: 3px solid var(--teal); padding: 4px 0 4px 18px; margin: 28px 0; color: var(--ink); font-style: italic; }
+  .cap { font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--mute); font-weight: 500; }
+  .layer-card { border: 1px solid var(--line); border-radius: 14px; padding: 24px 26px; background: white; margin-bottom: 16px; }
+  .layer-card h4 { font-family: "Iowan Old Style", "Georgia", serif; font-size: 19px; font-weight: 400; margin-bottom: 8px; }
+  .layer-card .num { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 500; margin-bottom: 12px; letter-spacing: 0.08em; }
+  .path-card { border: 1px solid var(--line); border-radius: 14px; padding: 26px 28px; margin-bottom: 18px; background: white; }
+  .path-card .badge { font-size: 11px; padding: 3px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal); font-weight: 600; letter-spacing: 0.05em; display: inline-block; margin-bottom: 10px; }
+  .path-card.path-2 .badge { background: #FFF4D6; color: #8A6B00; }
+  .path-card.path-3 .badge { background: #F2EBFB; color: #5C3D9C; }
+  table.compact { width: 100%; border-collapse: collapse; font-size: 14px; margin: 18px 0 26px; }
+  table.compact th { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); font-weight: 500; color: var(--mute); }
+  table.compact td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.compact tr:last-child td { border-bottom: none; }
+  .footer-note { font-size: 13px; color: var(--mute); margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); line-height: 1.65; }
+  @media (max-width: 640px) {
+    .prose-srl h2 { font-size: 24px; }
+    .prose-srl p, .prose-srl ul li { font-size: 15.5px; }
+  }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- top nav -->
+<nav class="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
+  <a href="/" class="flex items-center gap-3">
+    <div class="w-9 h-9 rounded-full bg-[var(--ink)] flex items-center justify-center text-[var(--paper)] font-medium text-sm">P</div>
+    <div>
+      <div class="font-medium text-[15px] leading-tight">Pausality</div>
+      <div class="text-[12px] mute leading-tight">Somnistics Research Labs</div>
+    </div>
+  </a>
+  <a href="/" class="text-[14px] mute hover:text-[var(--ink)] transition">← Back to round overview</a>
+</nav>
+
+<!-- hero -->
+<section class="max-w-4xl mx-auto px-6 pt-6 pb-10">
+  <p class="cap mb-5">Investor Depth Brief · May 22, 2026</p>
+  <h1 class="serif text-[40px] sm:text-[52px] leading-[1.06] font-normal mb-6">The ecosystem and the return thesis.</h1>
+  <p class="text-[18px] mute max-w-2xl">
+    The market, the audience, the four-layer roadmap, and the honest answer to the one question
+    every investor cares about most — how you get your money back, at what multiple, and by what path.
+  </p>
+</section>
+
+<!-- TOC -->
+<section class="max-w-4xl mx-auto px-6 pb-4">
+  <div class="border line rounded-2xl p-5 sm:p-6 bg-white">
+    <p class="cap mb-3">In this brief</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 text-[14.5px]">
+      <a href="#underwrite" class="hover:accent">1 — What you're being asked to underwrite</a>
+      <a href="#market" class="hover:accent">2 — The market in one page</a>
+      <a href="#audience" class="hover:accent">3 — The audience map</a>
+      <a href="#ecosystem" class="hover:accent">4 — The four-layer ecosystem</a>
+      <a href="#competitive" class="hover:accent">5 — The competitive map</a>
+      <a href="#return" class="hover:accent">6 — How you get your money back</a>
+      <a href="#team" class="hover:accent">7 — The team</a>
+      <a href="#where" class="hover:accent">8 — Where SRL is right now</a>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<article class="max-w-4xl mx-auto px-6 prose-srl pb-12">
+
+  <h2 id="underwrite">1 — What you're being asked to underwrite</h2>
+  <p>
+    Somnistics Research Labs is a Seattle-based applied-science company building <strong>Pausality</strong>,
+    an in-moment autonomic regulation app delivered through the Apple Watch and iPhone. The product trains
+    a measurable physiological skill — autonomic flexibility — in the seconds when a person needs it most:
+    mid-case, mid-shift, mid-decision.
+  </p>
+  <p>
+    The investment instrument is a SAFE on a <strong>$5.5M post-money cap</strong>. The round target is $250K;
+    $125K is committed; the remaining $125K is what we are closing now through a tight set of relationships.
+    We are not raising broadly. We are selecting.
+  </p>
+  <div class="pull">
+    This document is the depth layer behind the deal mechanics on the main page. The main page tells you the
+    <em>what</em>. This tells you the <em>what for</em> — and the honest answer to how you get paid back.
+  </div>
+
+  <h2 id="market">2 — The market in one page</h2>
+  <p>
+    Two distinct surfaces, sized differently.
+  </p>
+
+  <h3>Surface one — consumer and wellness</h3>
+  <p>
+    318,000 monthly Google searches for breathwork content, growing 17% YoY. The biofeedback device market
+    is moving from $193.7M (2024) to a projected $312M by 2032. Consumer wellness spending in 2026 is
+    approximately $60B in budgeted dollars. The category is dominated by Calm and Headspace — together
+    60–70% of meditation app share — but they retain only <strong>4.7% of users after thirty days</strong>.
+    Large, growing, structurally unable to retain users on the consumer-only model.
+  </p>
+
+  <h3>Surface two — clinical and enterprise (where SRL operates)</h3>
+  <p>
+    65,000 CRNAs. 4M licensed RNs. ~1M physicians. Clinician burnout is now a board-level priority at every
+    health system in the country. Lyra covers 20M lives; Spring Health is at $3.3B; Grow Therapy raised
+    $150M at $3B in March 2026. These are the enterprise mental health gatekeepers, and their model is
+    structurally biased toward the 20% of employees who need therapy. <strong>The 80% who need physiological
+    skill-building have no precision tool.</strong> That is the gap.
+  </p>
+
+  <h3>Why now — May 2026</h3>
+  <p>
+    Two events open the window simultaneously.
+  </p>
+  <ul>
+    <li><strong>Detection has been solved.</strong> WHOOP is at $10.1B post-Series G. Oura confidentially filed for IPO this month with projected 2026 revenue of $1.5–2B. The Apple Watch is on 100M+ wrists. The autonomic signal is being captured continuously and inexpensively.</li>
+    <li><strong>Intervention has not been solved.</strong> Detection produces dashboards and scores, not trained capacity. The May 2026 evidence base (Yoo, Ding, Grabo, Spalding) just matured enough to ground intervention claims at clinical-grade precision. The product space is now ready for an intervention category that is to detection what physical therapy is to fitness tracking.</li>
+  </ul>
+
+  <h2 id="audience">3 — The audience map</h2>
+  <p>
+    Investors often ask whether SRL is clinical, enterprise, or consumer. The answer is <em>sequenced</em> —
+    each audience unlocks the next.
+  </p>
+  <table class="compact">
+    <thead>
+      <tr><th>Audience</th><th>Function</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Customer-zero: Randy</strong></td><td>Product validated against his own physiology across 18 months of OR practice.</td><td>Complete (n=1).</td></tr>
+      <tr><td><strong>CRNAs / OR clinicians</strong></td><td>The clinical-validation beachhead. Pilot conversions to enterprise.</td><td>Rush, UW, VCU, MUSC active. AANA Class A CE in submission.</td></tr>
+      <tr><td><strong>Nurses (4M)</strong></td><td>CE course (S.T.E.P.) — recurring, license-required revenue bridge.</td><td>ANCC in parallel. $1–3M revenue band at fractional capture.</td></tr>
+      <tr><td><strong>Health systems / self-insured employers</strong></td><td>The enterprise contract layer. The clinical-LLM training corpus.</td><td>Pilots → contracts in next 12–18 months.</td></tr>
+      <tr><td><strong>Consumers</strong></td><td>Downstream of clinical credibility. B2B2C via employer distribution.</td><td>Deferred by design.</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Skipping a step compresses valuation; doing them in order compounds it.
+  </p>
+
+  <h2 id="ecosystem">4 — The four-layer ecosystem</h2>
+  <p>
+    SRL's operating plan is four sequential layers. Each layer funds the next, and each independently
+    raises the floor under the company's valuation.
+  </p>
+
+  <div class="layer-card">
+    <span class="num">LAYER 1</span>
+    <h4>Clinical credibility — the Library-Graph</h4>
+    <p>
+      The foundation. A standards-based knowledge graph (Dublin Core, SKOS, PROV-O) currently documenting
+      200+ canonical concepts and 100+ verified-DOI evidence notes. Every clinical claim traces to a primary
+      source. Unusual in the wellness category. This is the artifact that distinguishes SRL from companies
+      that look similar from a distance.
+    </p>
+  </div>
+
+  <div class="layer-card">
+    <span class="num">LAYER 2</span>
+    <h4>Pausality — the validated consumer surface</h4>
+    <p>
+      iOS + Apple Watch. The unit of use is a 60-second NeuroMinute. Designed for in-moment deployment
+      rather than pre-event preparation — a design choice the Spalding 2025 null finding has empirically
+      supported from the opposite direction. The consumer surface generates validation data, recruits
+      clinical cohorts, and eventually serves as the B2B2C delivery vehicle to enterprise employees.
+    </p>
+  </div>
+
+  <div class="layer-card">
+    <span class="num">LAYER 3</span>
+    <h4>Enterprise pilot → enterprise contract</h4>
+    <p>
+      The revenue layer. CRNA-program pilot → hospital-system contract → multi-system rollout →
+      self-insured-employer expansion. Per-seat annual contracts with clinical-outcome reporting.
+      Apollo Neuro: $30.7M raised against 17 clinical studies. Spring Health: $3.3B valuation on
+      enterprise contract base. SRL's pilot-to-contract conversion math determines venture-scale
+      versus revenue-scale valuation.
+    </p>
+  </div>
+
+  <div class="layer-card">
+    <span class="num">LAYER 4</span>
+    <h4>The clinical-LLM moat</h4>
+    <p>
+      Every enterprise contract generates clinical-outcome data tied to physiological measurement.
+      Aggregated, this becomes the training corpus for a clinical autonomic-regulation language model.
+      Detection companies — Oura, WHOOP, Samsung, Apple — cannot build this without partnering. They
+      are sensors. SRL is the protocol-response engine that turns sensor data into clinical action.
+      This is the layer that determines whether the eventual exit is a $50M acqui-hire or a $500M+
+      strategic acquisition.
+    </p>
+  </div>
+
+  <p>
+    <strong>Parallel track: the CE course.</strong> S.T.E.P. (Somnistics Training and Education Protocol)
+    generates near-term cash flow against a known purchasing pattern — CE renewal is legally required for
+    active license. This is not the company's main story; it is the financial bridge that lets the company
+    stay disciplined on enterprise contract terms.
+  </p>
+
+  <h2 id="competitive">5 — The competitive map</h2>
+  <p>
+    The category looks crowded from the surface. Read it by <em>layer</em> and the position becomes clear.
+  </p>
+  <table class="compact">
+    <thead>
+      <tr><th>Layer</th><th>Players</th><th>Position to SRL</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Detection</strong></td><td>WHOOP ($10.1B), Oura (IPO-bound), Apple Watch, Samsung, Fitbit</td><td>Acquirers, not competitors. They need intervention they can't build.</td></tr>
+      <tr><td><strong>Coaching surface</strong></td><td>ChatGPT Health, Gemini Health Coach, Copilot Health, Samsung Brain Health</td><td>Surfaces SRL plugs into. Advice layer ≠ intervention layer.</td></tr>
+      <tr><td><strong>Consumer intervention</strong></td><td>Calm, Headspace, Breathwrk (Peloton $2.2M exit), Apollo Neuro, Moonbird</td><td>Weak retention, no clinical depth. Breathwrk at 0.29x on raised capital is the floor we are explicitly not building.</td></tr>
+      <tr><td><strong>Clinical intervention</strong></td><td>HeartMath (legacy science, dated delivery), Prana Labs/Vayu (sub-$1M, pre-PMF)</td><td><strong>The slot SRL is building into. Largely empty.</strong></td></tr>
+      <tr><td><strong>Enterprise gatekeepers</strong></td><td>Lyra ($910M+), Spring Health ($3.3B), Grow Therapy ($3B), Headspace Health</td><td>Distribution partners or acquirers. Their therapy model serves 20% of employees; SRL serves the other 80%.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="return">6 — How you get your money back</h2>
+  <p>
+    Three plausible paths to return-of-capital, ranked by likelihood and typical multiple. Each names
+    what would have to be true.
+  </p>
+
+  <div class="path-card">
+    <span class="badge">PATH 1 · HIGHEST LIKELIHOOD · LARGE MULTIPLE</span>
+    <h3 style="margin-top: 0;">Strategic acquisition by a sensor platform</h3>
+    <p>
+      WHOOP and Oura are the obvious acquirers. Both have publicly stated intentions to IPO. Both face
+      the same internal problem: detection without intervention is a stalled product narrative. Both
+      have the cash and strategic motive to acquire the clinical protocol layer before going public.
+    </p>
+    <p>
+      <strong>Comparables:</strong> Sword Health acquired Kaia Health for $285M (2026). Apollo Neuro at
+      $100M+ valuation with 17 clinical studies. <em>Below-bound:</em> Peloton acquired Breathwrk for
+      $2.2M (0.29x return on $7.7M raised — explicitly not the profile we are building).
+    </p>
+    <p>
+      <strong>Math:</strong> At a $5.5M post-money cap, an acquisition in the $50–250M range produces a
+      <strong>9x–45x cash return</strong> on the cap, before subsequent-round dilution. The acquisition
+      does not need to be a unicorn; it needs to clear the cap and dilution math.
+    </p>
+    <p>
+      <strong>What would have to be true:</strong> at least one CRNA-program pilot converts to a single-system
+      enterprise contract, the clinical-validation dataset has reproducibility across the cohort, and the
+      timing aligns with WHOOP's or Oura's pre-IPO M&amp;A window (2026–2028).
+    </p>
+  </div>
+
+  <div class="path-card path-2">
+    <span class="badge">PATH 2 · MODERATE LIKELIHOOD · MODERATE-TO-LARGE MULTIPLE</span>
+    <h3 style="margin-top: 0;">Strategic acquisition by an enterprise mental health platform</h3>
+    <p>
+      Lyra, Spring, Headspace Health, and Grow Therapy are all consolidating point solutions into bundled
+      offerings. The pattern favors validated clinical solutions serving employee segments their core
+      therapy product does not reach well.
+    </p>
+    <p>
+      <strong>Comparables:</strong> Spring Health–Alma (~10M visits combined). Lyra–Bend Health. Sword–Kaia
+      ($285M). Multiples in this category cluster around 6–12x trailing revenue for clinically-validated
+      point solutions, or fixed-price strategic acquisitions in the $50–500M range when the buyer is
+      integrating a category.
+    </p>
+    <p>
+      <strong>What would have to be true:</strong> the enterprise contract pipeline matures to at least
+      three signed system contracts, the clinical-outcome data is reproducible, and the buyer's strategic
+      narrative requires a "physiological skill-building" line item in its bundle.
+    </p>
+  </div>
+
+  <div class="path-card path-3">
+    <span class="badge">PATH 3 · MODERATE LIKELIHOOD · MODERATE MULTIPLE</span>
+    <h3 style="margin-top: 0;">Revenue-scale exit with founder retention</h3>
+    <p>
+      If enterprise contracts mature and CE course revenue compounds, the company reaches $1–10M ARR
+      without significant additional capital. At that point, SRL is a candidate for revenue-scale
+      acquisition by a non-platform acquirer (regional health system holdco, CE-focused PE firm, clinical
+      content roll-up) at a 4–8x ARR multiple.
+    </p>
+    <p>
+      <strong>Math:</strong> the lower-variance path. <strong>4x–15x returns</strong> on the F&amp;F cap
+      rather than the 9x–45x of Path 1, but the highest probability of producing <em>some</em> return.
+    </p>
+    <p>
+      <strong>What would have to be true:</strong> AANA and ANCC CE accreditations come through, consumer
+      app reaches modest organic growth, at least one enterprise contract anchors recurring revenue narrative.
+    </p>
+  </div>
+
+  <div class="pull">
+    We are not telling you SRL is going to IPO. IPO is a marginal exit pathway in digital health right now
+    — Rock Health's Q1 2026 data shows 43 M&amp;A deals against a near-empty IPO calendar for non-platform
+    companies. WHOOP and Oura can IPO because they are platforms with hundreds of millions in revenue.
+    SRL's most credible exit is acquisition <em>by</em> a platform, not competition with it.
+  </div>
+
+  <h3>What we will not promise you</h3>
+  <p>
+    We will not promise you a 100x. We will not tell you the company is going to "be the next Calm."
+    Calm's revenue dropped 24% in 2025; Headspace's $3B valuation compressed by 89%. The model that
+    produced those valuations is structurally broken at retention. The companies that win the next cycle
+    are the ones that earn clinical depth before they scale brand. That is the bet you are being asked
+    to make.
+  </p>
+
+  <h2 id="team">7 — The team</h2>
+  <table class="compact">
+    <thead>
+      <tr><th>Person</th><th>Role</th><th>Anchor</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Randy Graybeal</strong></td>
+        <td>Founder, CEO</td>
+        <td>CRNA, 28 years operating-room anesthesia. The clinical-protocol IP traces directly to three decades inside the exact stress profile the product targets. <a class="accent" href="https://www.linkedin.com/in/randygraybeal/">LinkedIn</a>.</td>
+      </tr>
+      <tr>
+        <td><strong>Jason Fields</strong></td>
+        <td>Co-founder, CPO</td>
+        <td>Formerly Audible. Building the product, user system, and CE course infrastructure.</td>
+      </tr>
+      <tr>
+        <td><strong>Rob Ashton</strong></td>
+        <td>Lead investor, R&amp;A Capital</td>
+        <td>Existing $100K investor. Acts as closer on investor calls. Will match additional outside money.</td>
+      </tr>
+      <tr>
+        <td><strong>Russell Fette</strong></td>
+        <td>Fractional CFO, Decisive Finance</td>
+        <td>Advising F&amp;F mechanics and bridge structure. Mandate: keep the cap table investible at Series A.</td>
+      </tr>
+      <tr>
+        <td><strong>Clinical &amp; advisory network</strong></td>
+        <td>Named advisors</td>
+        <td>Active pilot conversations at Rush, UW, VCU, MUSC, Mayo. Technical advisors across wearable/digital health.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="where">8 — Where SRL is, factually, on May 22, 2026</h2>
+  <ul>
+    <li>F&amp;F SAFE round: <strong>$125K of $250K committed</strong>. Rob Ashton's $100K in. $25K founder bridge funded today.</li>
+    <li>Active pilot conversations: Rush, UW, VCU CRNA programs; MUSC; Mayo (follow-up owed by SRL).</li>
+    <li>AANA Class A CE accreditation in submission. ANCC accreditation in preparation as parallel track.</li>
+    <li>Library-Graph: 200+ canonical concepts, 100+ verified-DOI evidence notes, six named cross-layer translation bridges (May 2026 synthesis).</li>
+    <li>S.T.E.P. CE course: mid-build, Stripe + user database scaffolded.</li>
+    <li>Closing-team model: Randy initiates; Rob, Russell Fette, and Jason Fields close. 24–48 hour follow-up SLA on every prospect.</li>
+  </ul>
+
+  <h2>How to dig deeper</h2>
+  <p>This document is a depth-gift. If you want to spend more time with the company, the next conversations we welcome are:</p>
+  <ul>
+    <li>A 60-minute briefing on the May 2026 literature synthesis and the framework shift it identifies.</li>
+    <li>A live demonstration of the Pausality product mechanic.</li>
+    <li>An introduction to one of the active pilot conversations.</li>
+    <li>A review of the executable SAFE term sheet (gated on this site at <a class="accent" href="/room/safe.html">/room/safe.html</a>).</li>
+    <li>A call with Rob Ashton or Russell Fette on deal structure and cap-table mechanics.</li>
+  </ul>
+
+  <div class="pull">
+    We are selective about who joins this round. The reason is not scarcity rhetoric. The next 18 months
+    are going to be relationship-intensive, and the right capital partner is one whose disposition compounds
+    with ours. If the science is good enough, the relationship follows. The science is good enough.
+  </div>
+
+  <div class="footer-note">
+    <p>
+      Prepared by SRL leadership. Companion to the F&amp;F deal mechanics on the
+      <a class="accent" href="/">main page</a>. Full evidence chain, Library-Graph access, and pilot-conversation
+      references available on request. Contact:
+      <a class="accent" href="mailto:randy@somnistics.com">randy@somnistics.com</a>.
+    </p>
+    <p style="margin-top: 14px;">
+      <strong>Sources:</strong> Rock Health Q1 2026 Funding Overview; MedCity News Digital Health M&amp;A
+      report (Feb 2026); Oura S-1 confidential filing coverage (the5krunner, May 22 2026); Halle Tecco
+      Digital Health IPO Watchlist 2026; SRL Library-Graph evidence base (Yoo 2026, Da Cunha e Silva 2026,
+      Grabo 2025, Ding 2025, Sveinsdottir 2025, Spalding 2025); Galen Growth Digital Health Exits 2025;
+      SRL competitive intelligence brief 2026-03-15.
+    </p>
+  </div>
+
+</article>
+
+<footer class="max-w-4xl mx-auto px-6 py-12 mt-8 text-[12px] mute">
+  <div class="flex flex-wrap justify-between gap-4">
+    <span>Pausality™ · Somnistics Research Labs, Inc.</span>
+    <span>May 2026 · Investor Depth Brief · Confidential</span>
+  </div>
+</footer>
+
+</body>
+</html>

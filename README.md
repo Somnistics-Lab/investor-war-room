@@ -1,124 +1,86 @@
 # Pausality / Somnistics Research Labs — Investor War Room
 
-Hosted at **invest.somnistics.com**. Public landing page + gated inner room.
+A single-page F&F round site, hosted free on GitHub Pages.
+
+**Live URL** (once deployed): `https://YOUR-USERNAME.github.io/investor-war-room/`
 
 ## Structure
 
 ```
 investor-war-room/
-├── index.html              # Public landing page
-├── room/
-│   ├── index.html          # Gated inner room (Cloudflare Access protected)
-│   ├── safe.html           # SAFE term sheet detail
-│   └── financials.html     # Financial model + cap table
-├── assets/
-│   ├── pausality-deck.pdf      # Drop the current deck here
-│   ├── ff-one-pager.pdf        # Drop one-pager PDF here
-│   └── ff-safe-term-sheet.pdf  # Drop SAFE term sheet PDF here
-├── _redirects              # Cloudflare Pages routing
-├── _headers                # Security headers
+├── index.html         # The whole page
+├── assets/            # PDFs you drop in (deck, one-pager) — see assets/README.md
+├── .gitignore
 └── README.md
 ```
 
-The whole thing is plain HTML + Tailwind via CDN. No build step. Edit a file → commit → push → live in ~30 seconds.
+Plain HTML + Tailwind via CDN. No build step. Edit → commit → push → live in ~30 seconds.
+
+The actual SAFE term sheet and detailed financials are **not** in the repo — those you share directly with serious investors via email after a call.
 
 ---
 
-## First-time deploy (do this once)
+## First-time deploy (60 seconds, do this once)
 
-### 1. Create the GitHub repo
+Paste this whole block into Terminal on your Mac. If it errors at `gh --version` you need to `brew install gh` first.
 
 ```bash
 cd "/Users/somnisticshq/Documents/Claude/Projects/Investors/investor-war-room"
-git init
-git add .
-git commit -m "Initial scaffold of investor war room"
+
+# Verify prerequisites
+git --version >/dev/null && gh --version >/dev/null || { echo "MISSING — run: brew install gh"; exit 1; }
+gh auth status >/dev/null 2>&1 || gh auth login
+
+# Init, commit, create on GitHub (public — required for free GitHub Pages), push
+git init -q && git add . && git commit -qm "Initial scaffold of investor war room"
+gh repo create investor-war-room --public --source=. --remote=origin --push
+
+# Enable GitHub Pages on the main branch (root folder)
+OWNER=$(gh repo view --json owner --jq '.owner.login')
+gh api -X POST "repos/$OWNER/investor-war-room/pages" -F "source[branch]=main" -F "source[path]=/" >/dev/null \
+  && echo "✅ Pages enabled — live at: https://$OWNER.github.io/investor-war-room/ (allow 1–2 min for first build)"
 ```
 
-Then on GitHub: **New repository** → name `investor-war-room` → **Private** → "Push existing repo from command line":
-
-```bash
-git remote add origin git@github.com:somnistics/investor-war-room.git
-git branch -M main
-git push -u origin main
-```
-
-(Adjust the org name `somnistics` if your GitHub org is different.)
-
-### 2. Connect Cloudflare Pages
-
-1. Cloudflare dashboard → **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
-2. Pick the `investor-war-room` repo.
-3. Build settings:
-   - Framework preset: **None**
-   - Build command: *(leave blank)*
-   - Build output directory: `/`
-4. Click **Save and Deploy**. First deploy completes in ~1 min. You'll get a `.pages.dev` URL — that's your fallback URL.
-
-### 3. Point invest.somnistics.com at it
-
-1. Cloudflare dashboard → **somnistics.com** zone → **DNS** → **Add record**:
-   - Type: **CNAME**
-   - Name: `invest`
-   - Target: `<your-project-name>.pages.dev`
-   - Proxy status: **Proxied** (orange cloud)
-2. In Pages → your project → **Custom domains** → **Set up a custom domain** → enter `invest.somnistics.com`.
-3. Cloudflare provisions an SSL cert automatically. Usually ready in 1–5 min.
-
-### 4. Lock down the /room/* path with Cloudflare Access
-
-This is what gates the inner room without per-investor URLs.
-
-1. Cloudflare dashboard → **Zero Trust** → **Access** → **Applications** → **Add an application** → **Self-hosted**.
-2. App config:
-   - Name: `Pausality Investor Room`
-   - Session duration: `24 hours`
-   - Application domain: `invest.somnistics.com/room*`
-3. Identity providers: enable **One-time PIN** (sends a 6-digit code to the investor's email — no signup needed).
-4. Create a policy:
-   - Policy name: `Allowed investors`
-   - Action: **Allow**
-   - Include: **Emails** → list the investor email addresses one per line, OR **Email ending in** → `@somnistics.com` for internal team.
-5. Save. Now anyone hitting `invest.somnistics.com/room/*` gets a Cloudflare email-code login screen.
-
-Add or remove investor emails any time by editing the policy.
+The last line prints your live URL. First deploy takes 1–2 minutes; subsequent pushes update in ~30 seconds.
 
 ---
 
 ## Day-to-day updates
 
 ```bash
-# Edit any file in the project, then:
-git add .
-git commit -m "Update progress meter — $X committed"
-git push
-# Live in ~30 seconds via Cloudflare auto-deploy.
+# Edit any file, then:
+git add . && git commit -m "Update progress meter — $X committed" && git push
+# Live in ~30 seconds.
 ```
 
-The progress meter on `index.html` is hand-edited (two width percentages + the dollar labels). When a new commit lands, bump those values and push.
+The progress meter on `index.html` is hand-edited. Search for `data-committed` and `data-target` and update the dollar labels. Search for `width: 40%` and `width: 10%` to adjust the bar widths if commitments change.
 
 ---
 
-## Adding a new investor to the gated room
+## What to drop into `assets/`
 
-Cloudflare Zero Trust → **Access** → **Applications** → `Pausality Investor Room` → edit policy → add their email → save. They can immediately request a code at invest.somnistics.com/room.
+The page itself doesn't load any PDFs yet — but if you want to make the deck downloadable for warm-intro forwarders:
 
-## Revoking access
+1. Export your current updated deck (post Brad-Kotansky-removal) to PDF as `assets/pausality-deck.pdf`.
+2. Export the F&F one-pager from Drive to PDF as `assets/ff-one-pager.pdf`.
+3. Commit + push.
+4. Add a link to either file from `index.html` (e.g. `<a href="/assets/pausality-deck.pdf" download>Download deck</a>`).
 
-Same place — remove email from policy. Their existing session expires at most 24 hours later (per session duration).
+**Do NOT commit:**
+- The executable SAFE term sheet (share via DocuSign / email only)
+- Real cap table (share on calls only)
+- Anything truly confidential — the repo is public
 
 ---
 
-## What to do if you want to ditch Cloudflare Access and use a shared password instead
+## If you want a custom domain later (`invest.somnistics.com`)
 
-Not recommended — passwords leak. But if you want speed-over-security for a weekend, replace step 4 with a single line in `_headers`:
+GitHub Pages supports custom domains for free:
+1. In the repo's `Settings → Pages → Custom domain` field, enter `invest.somnistics.com`.
+2. At your DNS host (Cloudflare, Namecheap, wherever), add a CNAME record: `invest` → `YOUR-USERNAME.github.io`.
+3. Wait ~5 min, then enable "Enforce HTTPS" in the same settings panel.
 
-```
-/room/*
-  WWW-Authenticate: Basic realm="Investor Room"
-```
-
-…then add a Cloudflare Page Rule or Worker for HTTP basic auth. Reach back out and I'll wire it up — it's about 20 lines of Worker code.
+No Cloudflare account needed for this — works with any DNS host.
 
 ---
 
@@ -126,24 +88,8 @@ Not recommended — passwords leak. But if you want speed-over-security for a we
 
 | Thing | Location |
 |---|---|
-| Public landing copy | `index.html` |
-| Progress meter values | `index.html` (search for `data-committed` and `data-target`) |
-| Gated SAFE doc | `assets/ff-safe-term-sheet.pdf` (gated by Access on `/room/*` path) |
-| One-pager PDF | `assets/ff-one-pager.pdf` |
-| Deck PDF | `assets/pausality-deck.pdf` |
-| Calendly link | `index.html` + `room/index.html` — currently points at `somnistics-research-labs-1-1-60-min` (solo, 60 min, Zoom). Consider creating a dedicated "Investor pitch" event type in Calendly so you can track investor calls separately from other 1:1s. |
-| Allowed-investor emails | Cloudflare Zero Trust → Access policy (NOT in the repo) |
-
-## Things I deliberately left as placeholders / TBDs
-
-These need your input before the page is "done-done":
-
-1. **Pausality logo** — currently a `P` initial in a circle. Drop your real logo file into `assets/` and update the markup in `index.html` / `room/index.html`. Or have Jason hand you the brand mark.
-2. **Deck PDF** — page references `/assets/pausality-deck.pdf` but the file isn't in the repo yet. Export the current updated deck (post Brad-name-removal) and drop it in.
-3. **SAFE term sheet PDF** — same. Export `Q1 2025 SRL_FF_SAFE_Term_Sheet_2025 3.docx` to PDF and drop into `assets/ff-safe-term-sheet.pdf`.
-4. **One-pager PDF** — export the `pausality_friends_family_one_pager.md` from Drive as PDF and drop into `assets/ff-one-pager.pdf`.
-5. **MUSC pilot PDF** — copy from Drive (`1dLf9zPDWEZR7ZF9xDQkxPEiGNquwqKyY`) into `assets/pausality-musc-pilot-onepager.pdf`.
-6. **SAFE term sheet plain-English summary (`room/safe.html`)** — currently only lists generic terms (round size, instrument, QSBS treatment). The discount/cap, pro-rata, MFN, and other specifics say "See executable term sheet." If you want those visible in the room, edit `room/safe.html` and add the actual values from your executable doc.
-7. **Cap-table snapshot (`room/financials.html`)** — founders row says "Walked through on call" because I don't know the actual splits. If you want concrete % visible in the gated room, edit that row.
-
-The repo is private but treat it as if it weren't — don't commit anything truly confidential into it. Real confidential docs live in `assets/` which is gated by the Access policy on the path, not by the repo's private flag.
+| Page copy | `index.html` |
+| Progress meter values | `index.html` (search for `data-committed`, `data-target`) |
+| Calendly link | `index.html` (search for `calendly.com`) |
+| Email Randy mailto | `index.html` (search for `mailto:`) |
+| Actual SAFE term sheet, cap table, financials | NOT in this repo — emailed/DocuSigned directly to serious investors |
